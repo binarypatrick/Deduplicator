@@ -1,11 +1,8 @@
-﻿using Cli.Deduplicator.Interfaces;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using BinaryPatrick.Deduplicator.Interfaces;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Cli.Deduplicator.Deduplicators
+namespace BinaryPatrick.Deduplicator.Deduplicators
 {
     internal class HashDeduplicator : BaseDeduplicator, IDeduplicator
     {

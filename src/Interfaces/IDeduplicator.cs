@@ -1,4 +1,4 @@
-﻿namespace Cli.Deduplicator.Interfaces
+﻿namespace BinaryPatrick.Deduplicator.Interfaces
 {
     internal interface IDeduplicator
     {

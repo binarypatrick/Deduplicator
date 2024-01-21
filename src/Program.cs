@@ -1,10 +1,7 @@
 ﻿using Cli.Deduplicator.Deduplicators;
 using Cli.Deduplicator.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.IO;
 
-namespace Deduplicator.Cli
+namespace BinaryPatrick.Deduplicator
 {
     internal class Program
     {

@@ -1,10 +1,7 @@
-﻿using Cli.Deduplicator.Interfaces;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using BinaryPatrick.Deduplicator.Interfaces;
 using System.Text.RegularExpressions;
 
-namespace Cli.Deduplicator.Deduplicators
+namespace BinaryPatrick.Deduplicator.Deduplicators
 {
     internal class FilenameDeduplicator : BaseDeduplicator, IDeduplicator
     {

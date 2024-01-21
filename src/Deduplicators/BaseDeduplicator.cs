@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-
-namespace Cli.Deduplicator.Deduplicators
+﻿namespace BinaryPatrick.Deduplicator.Deduplicators
 {
     internal class BaseDeduplicator
     {
