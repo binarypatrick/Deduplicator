@@ -1,5 +1,5 @@
-﻿using Cli.Deduplicator.Deduplicators;
-using Cli.Deduplicator.Interfaces;
+﻿using BinaryPatrick.Deduplicator.Deduplicators;
+using BinaryPatrick.Deduplicator.Interfaces;
 
 namespace BinaryPatrick.Deduplicator
 {
