@@ -1,21 +1,30 @@
-﻿namespace BinaryPatrick.Deduplicator.Deduplicators
+﻿namespace BinaryPatrick.Deduplicator.Deduplicators;
+
+internal class BaseDeduplicator
 {
-    internal class BaseDeduplicator
+    protected static void DeleteSmallestDuplicates(IEnumerable<FileInfo> files, bool isVerbose, bool isDryRun)
     {
-        protected static void DeleteSmallestDuplicates(IEnumerable<FileInfo> files)
+        if (files.Count() <= 1)
         {
-            if (files.Count() <= 1)
+            return;
+        }
+
+        IEnumerable<FileInfo> orderedFiles = files
+            .OrderByDescending(x => x.Length)
+            .Skip(1);
+
+        foreach (FileInfo file in orderedFiles)
+        {
+            if (isDryRun)
             {
-                return;
+                Console.WriteLine($"  {file.FullName}");
+                continue;
             }
 
-            FileInfo[] orderedFiles = files
-                .OrderByDescending(x => x.Length)
-                .ToArray();
-
-            for (int i = 1; i < orderedFiles.Length; i++)
+            file.Delete();
+            if (isVerbose)
             {
-                orderedFiles[i].Delete();
+                Console.WriteLine($"{file.FullName} deleted");
             }
         }
     }

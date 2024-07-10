@@ -5,6 +5,12 @@ VisualStudioVersion = 17.6.33815.320
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BinaryPatrick.Deduplicator", "src\BinaryPatrick.Deduplicator.csproj", "{8A75FD3C-C203-4BB5-876E-4D847B5F8010}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C1D79115-123A-42F1-8D91-5A549E4423F4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{B65999EF-F94A-472F-8E43-1BA9CBBD681D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BinaryPatrick.Deduplicator.Tests", "tests\BinaryPatrick.Deduplicator.Tests\BinaryPatrick.Deduplicator.Tests.csproj", "{D823E9C0-AA73-4F4F-A19C-D550AB8B6C19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,17 @@ Global
 		{8A75FD3C-C203-4BB5-876E-4D847B5F8010}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A75FD3C-C203-4BB5-876E-4D847B5F8010}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A75FD3C-C203-4BB5-876E-4D847B5F8010}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D823E9C0-AA73-4F4F-A19C-D550AB8B6C19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D823E9C0-AA73-4F4F-A19C-D550AB8B6C19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D823E9C0-AA73-4F4F-A19C-D550AB8B6C19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D823E9C0-AA73-4F4F-A19C-D550AB8B6C19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8A75FD3C-C203-4BB5-876E-4D847B5F8010} = {C1D79115-123A-42F1-8D91-5A549E4423F4}
+		{D823E9C0-AA73-4F4F-A19C-D550AB8B6C19} = {B65999EF-F94A-472F-8E43-1BA9CBBD681D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EC5354D1-E0C2-43DC-B8D8-2DD02B8FF3E8}

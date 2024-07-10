@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "BinaryPatrick.Deduplicator": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\patrick\\desktop\\test --filename-only --dry-run"
+    }
+  }
+}

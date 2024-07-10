@@ -1,33 +1,27 @@
-﻿using BinaryPatrick.Deduplicator.Deduplicators;
+﻿using BinaryPatrick.Deduplicator.Helpers;
 using BinaryPatrick.Deduplicator.Interfaces;
+using BinaryPatrick.Deduplicator.Models;
 
-namespace BinaryPatrick.Deduplicator
+namespace BinaryPatrick.Deduplicator;
+
+internal class Program
 {
-    internal class Program
+    private static void Main(string[] args)
     {
-        private static void Main(string[] args)
+        IAppOptions? options = AppOptions.ParseArguments(args);
+        if (options is null)
         {
-            if (args.Length < 1)
-            {
-                throw new ArgumentException("Missing folder path as argument");
-            }
+            return;
+        }
 
-            string path = args[0];
-            if (!Directory.Exists(path))
-            {
-                throw new ArgumentException("Folder path does not exist");
-            }
+        if (options.IsDryRun)
+        {
+            ConsoleHelper.WriteInformation("Dry Run - the following files listed would be deleted:");
+        }
 
-            List<IDeduplicator> deduplicators = new()
-            {
-                new FilenameDeduplicator(),
-                new HashDeduplicator(),
-            };
-
-            foreach (IDeduplicator deduplicator in deduplicators)
-            {
-                deduplicator.Deduplicate(path);
-            }
+        foreach (IDeduplicator deduplicator in options.Deduplicators)
+        {
+            deduplicator.Deduplicate(options);
         }
     }
 }

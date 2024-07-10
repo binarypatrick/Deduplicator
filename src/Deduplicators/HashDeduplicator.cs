@@ -1,43 +1,31 @@
 ﻿using BinaryPatrick.Deduplicator.Interfaces;
 using System.Security.Cryptography;
-using System.Text;
 
-namespace BinaryPatrick.Deduplicator.Deduplicators
+namespace BinaryPatrick.Deduplicator.Deduplicators;
+internal class HashDeduplicator : BaseDeduplicator, IDeduplicator
 {
-    internal class HashDeduplicator : BaseDeduplicator, IDeduplicator
+    public string Name { get; } = "hash";
+    public string Description { get; } = @"Matches duplicates by file MD5 hash";
+    public int Rank { get; } = 0;
+
+    public void Deduplicate(IAppOptions options)
     {
-        public void Deduplicate(string path)
+        IEnumerable<IEnumerable<FileInfo>> fileGroups = Directory.GetFiles(options.Path)
+            .Select(x => new FileInfo(x))
+            .GroupBy(GetFileHash)
+            .ToList();
+
+        foreach (IEnumerable<FileInfo> fileGroup in fileGroups)
         {
-            IEnumerable<FileInfo> files = Directory.GetFiles(path)
-                .Select(x => new FileInfo(x));
-
-            IEnumerable<IEnumerable<FileInfo>> fileGroups = files.GroupBy(GetFileHash)
-                .Select(x => x.AsEnumerable());
-
-            foreach (IEnumerable<FileInfo> fileGroup in fileGroups)
-            {
-                DeleteSmallestDuplicates(fileGroup);
-            }
+            DeleteSmallestDuplicates(fileGroup, options.IsVerbose, options.IsDryRun);
         }
+    }
 
-        private string GetFileHash(FileInfo file)
-        {
-            byte[] fileBytes = File.ReadAllBytes(file.FullName);
-            byte[] hashBytes = MD5.HashData(fileBytes);
+    private string GetFileHash(FileInfo file)
+    {
+        byte[] fileBytes = File.ReadAllBytes(file.FullName);
+        byte[] hashBytes = MD5.HashData(fileBytes);
 
-            string hash = ByteArrayToString(hashBytes);
-            return hash;
-        }
-
-        private static string ByteArrayToString(byte[] arrInput)
-        {
-            int i;
-            StringBuilder sOutput = new StringBuilder(arrInput.Length);
-            for (i = 0; i < arrInput.Length; i++)
-            {
-                sOutput.Append(arrInput[i].ToString("X2"));
-            }
-            return sOutput.ToString();
-        }
+        return hashBytes.ToHexString();
     }
 }
